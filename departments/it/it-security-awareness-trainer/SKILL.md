@@ -1,139 +1,185 @@
 ---
 name: it-security-awareness-trainer
-description: "Design and deliver security awareness training for employees. Use when the user says 'security awareness', 'security training', 'phishing training', 'cybersecurity training', 'employee security education', 'security culture', 'phishing simulation', or 'security training program'."
+description: "Build and manage security awareness training and phishing simulation programs. Use when the user says 'security training', 'security awareness', 'phishing training', 'phishing simulation', 'employee security training', 'cyber awareness', 'phishing test', 'security culture', 'train employees on security', 'phishing campaign', 'social engineering training', or 'security education'."
 metadata:
   version: 1.0.0
   tier: it
   owner: Dr. John Lewis
-argument-hint: "[--entity <name>] [--format <program|module|phishing-sim|brief>] [--audience <all|finance|exec|remote>]"
+argument-hint: "[--entity <company name>] [--action <launch|report|phishing-sim|annual-training>]"
 ---
 
 # IT Security Awareness Trainer
 
-Design and deliver security awareness training for employees. 90%+ of breaches start with a human action — a clicked phishing link, a reused password, or a shared credential. Technical controls are necessary but not sufficient. Employees who know what to look for are the last line of defense and the most cost-effective security control available.
+Build and manage security awareness training programs at MBL portfolio companies — ensuring employees can recognize phishing, social engineering, and common security threats before they cause incidents. People are the most consistent attack vector: phishing accounts for over 80% of reported security incidents at SMBs, and a trained employee who pauses before clicking an unexpected link is more effective than most technical controls. Training is also a HIPAA requirement at Allevio.
 
 ## When to Use
-- Annual security awareness training (required for SOC 2 and cyber insurance)
-- After a phishing incident or near-miss
-- New employee onboarding
-- Compliance audit preparation
-- Specific threat landscape change (new phishing campaign targeting the industry)
+- Deploying security awareness training for the first time at a portfolio company
+- Monthly or quarterly phishing simulation — how are employees performing?
+- A security incident occurred via phishing — training response needed
+- Annual HIPAA security awareness training at Allevio
+- Onboarding a new employee who needs initial security training
+- Reviewing training program effectiveness (click rates, quiz scores)
 
-## Training Program Components
+## Training Framework
 
-| Component | Format | Frequency | Audience |
-|---------|--------|---------|---------|
-| **Phishing awareness** | Video + simulated phishing test | Quarterly (test) + Annual (training) | All staff |
-| **Password security** | Module + password manager rollout | Annual | All staff |
-| **Data handling and classification** | Policy + module | Annual + on role change | All staff |
-| **Social engineering** | Scenarios + quiz | Annual | All staff |
-| **Financial fraud awareness** | Module + scenarios (wire fraud, BEC) | Annual | Finance + Exec |
-| **Remote work security** | Module + checklist | Annual + for new remote employees | Remote staff |
-| **Executive cyber risk** | 1-hour focused session | Annual | C-suite + Directors |
-
-## Phishing Simulation Framework
-
-| Wave | Difficulty | Template Type | Pass Rate Target |
-|------|-----------|-------------|----------------|
-| 1 | Low | Obvious external sender, generic content | > 90% pass |
-| 2 | Medium | Brand impersonation (Microsoft, DocuSign) | > 80% pass |
-| 3 | High | Spear phishing (personalized, uses company context) | > 70% pass |
-| 4 | Very High | Business Email Compromise (BEC) — fake executive email | > 65% pass |
-
-A "pass" = employee does not click the malicious link or attachment.
+```
+Core training modules (all employees):
+  1. Phishing recognition:
+     - What does a phishing email look like? (urgent language, wrong sender domain,
+       unexpected attachment, suspicious link)
+     - How to verify: hover over links, check sender address carefully
+     - What to do: Don't click; report to Dr. Lewis via Teams/email
+     
+  2. Password hygiene:
+     - Use a password manager (LastPass, 1Password, Bitwarden) — required
+     - Unique passwords for every account — no reuse
+     - Never share credentials — even with IT (IT will never ask for your password)
+     
+  3. MFA — why it matters:
+     - MFA blocks 99.9% of credential-based attacks (even if password is stolen)
+     - Authenticator app > SMS — why and how to set up
+     
+  4. Device security:
+     - Lock your screen when leaving your desk
+     - Don't plug in unknown USB drives
+     - Don't use public Wi-Fi without VPN for company work
+     
+  5. Reporting:
+     - If you see something suspicious, report it — there is no penalty for false alarms
+     - How to report: forward phishing emails as attachments; message Dr. Lewis
+     
+Healthcare-specific (Allevio — HIPAA §164.308(a)(5)):
+  Additional required training:
+    - PHI handling: minimum necessary access, no PHI via personal email
+    - HIPAA privacy and security basics
+    - What constitutes a PHI breach and how to report it
+    - ePHI on devices: encryption required, never on personal devices without MDM
+  Training must be documented with completion records
+  New hires: Before PHI access is granted
+  Existing staff: Annual refresher minimum
+  
+Phishing simulation program:
+  Platform options: KnowBe4, Proofpoint SAT, Microsoft Attack Simulator (free with M365)
+    Microsoft Attack Simulator: Built into M365 Defender; no additional cost
+    KnowBe4: ~$15-25/user/year; more sophisticated templates and reporting
+  Cadence: Monthly phishing simulations (employees who click get immediate micro-training)
+  Templates: Rotate among credential phishing, file sharing lures, urgency scams
+  Metrics tracked:
+    Click rate: % of employees who clicked the phishing link
+    Credential entry rate: % who entered credentials on fake phishing page
+    Report rate: % who correctly reported the simulated phishing email
+  Target metrics:
+    Click rate: <5% (industry average: 17-20% before training)
+    Credential entry: <2%
+    Report rate: >20% (good security culture = employees who report)
+    
+Training delivery:
+  LMS options: KnowBe4 (built-in), Microsoft Viva Learning, standalone LMS
+  Video-based: 5-10 minute modules; completion tracked
+  Testing: Quiz at end of each module; minimum 80% to pass
+  Certificates: Issue upon annual completion (especially for HIPAA — Allevio)
+```
 
 ## Output Format
 
 ```markdown
-# Security Awareness Training Program — <Entity>
-**Date:** <date> | **Audience:** <N employees>
-**Compliance requirement:** SOC 2 CC2 / Cyber Insurance / Internal policy
+# Security Awareness Training Report — <Company Name>
+**Report period:** [Month/Quarter YYYY]
+**Employees in program:** [N] | **Training completion:** [X%]
+**Phishing click rate (latest sim):** [X%] — Target: <5%
+**Prepared by:** Dr. John Lewis
 
 ---
 
-## Training Calendar
+## Training Completion Status
 
-| Module | Format | Duration | Audience | Delivery Date | Owner |
-|--------|--------|---------|---------|-------------|-------|
-| Annual security awareness | Video + quiz | 30 min | All staff | <date> | IT Manager |
-| Phishing simulation Wave 1 | Email test | — | All staff | <date + 1 week> | IT |
-| Password security + password manager | Module + setup | 20 min | All staff | <date> | IT |
-| Financial fraud / BEC | Scenario module | 20 min | Finance + Exec | <date> | IT Manager |
-| Executive cyber risk briefing | Live 1-hour | 60 min | C-suite | <date> | IT Manager + Dr. Lewis |
+| Module | Required for | Completion rate | Average score | Status |
+|--------|------------|----------------|-------------|--------|
+| Phishing Recognition | All staff | [X%] | [X%] | Good/Watch/Act |
+| Password Hygiene | All staff | [X%] | [X%] | |
+| MFA Setup | All staff | [X%] | [X%] | |
+| HIPAA Security Awareness | Allevio all | [X%] | [X%] | Must be 100% |
+| PHI Handling | Allevio clinical | [X%] | [X%] | |
 
----
-
-## Annual Training — Module 1: Phishing Awareness
-
-**Learning objectives:** After this training, employees can:
-1. Identify the top 5 phishing signals (urgency, odd sender, unexpected attachment, suspicious link, request for credentials)
-2. Know what to do: Report → IT, Don't click → Even if curious
-3. Understand that IT will NEVER ask for a password via email
-
-**Content outline:**
-1. What is phishing? (3 min) — Real examples from news
-2. How to spot a phishing email (8 min) — 5 signals with examples
-3. What to do (3 min) — Report to IT, forward with headers, don't reply
-4. What happens if you click (3 min) — Steps to take, who to call
-5. Quiz (5 min) — 5 questions, must pass with ≥ 80%
+**Employees with incomplete required training:** [N — list by name]
+**Allevio: PHI access blocked until HIPAA training complete:** [N staff blocked]
 
 ---
 
 ## Phishing Simulation Results
 
-### Wave 1 — <date>
-**Template:** Generic "Your account will be suspended" email
-**Sent to:** <N> employees | **Clicked:** <N> (<N>%)
-**Pass rate:** <N>% | **Target:** > 90%
+### Latest Simulation — [Date]
+- **Campaign type:** [Credential phishing / File share lure / Urgency scam]
+- **Emails sent:** [N]
+- **Clicked:** [N] ([X%]) — Target: <5%
+- **Entered credentials:** [N] ([X%]) — Target: <2%
+- **Reported (correctly):** [N] ([X%]) — Target: >20%
 
-| Department | Employees | Clicked | Click Rate | Status |
-|-----------|---------|---------|-----------|--------|
-| Finance | 4 | 0 | 0% | ✅ |
-| Sales | 8 | 2 | 25% | ❌ — Remedial training |
-| All staff avg | <N> | <N> | <N>% | |
+### Trend (last 6 months)
 
-**Employees who clicked:** Received immediate education (landing page explaining it was a test + link to 5-min module)
+| Month | Sent | Click rate | Credential rate | Report rate |
+|-------|------|-----------|----------------|------------|
+| [Month] | [N] | [X%] | [X%] | [X%] |
 
----
-
-## Compliance Evidence Package
-
-For SOC 2 / Cyber Insurance Audit:
-- [ ] Training completion records (% of staff who completed annual training)
-- [ ] Phishing simulation results (click rates by quarter)
-- [ ] Policy acknowledgment signatures (acceptable use policy)
-- [ ] Completion certificates for all employees
-
-**Training completion rate:** <N>% of employees
-**Target:** 100% (required for SOC 2 evidence)
+**Trend:** Improving / Flat / Worsening
 
 ---
 
-## Reporting Structure
+## High-Risk Employees
 
-Employees who click a phishing simulation email → immediate educational landing page → 5-min remedial module
-Employees who fail remedial module → IT Manager + HR notified → 1:1 coaching
-Employees who fail 3 times → HR conversation about acceptable use policy compliance
+Employees who clicked 2 or more simulations in the last 6 months or entered credentials:
+
+| Employee | Role | Simulations clicked | Action |
+|---------|------|------------------|--------|
+| [Name] | [Role] | 3 of 4 | Additional 1:1 training + monthly simulation |
+
+Note: High-risk lists are shared only with Dr. Lewis and CEO — not posted publicly.
+
+---
+
+## HIPAA Training Status (Allevio)
+
+| Staff member | HIPAA training completed | Date | Certificate on file | PHI access |
+|-------------|------------------------|------|--------------------|--------------------|
+| [Name] | Yes | [Date] | Yes | Granted |
+| [New hire - Day 3] | Pending | — | — | Blocked |
+
+---
+
+## Program Health
+
+| Metric | Current | Target |
+|--------|---------|--------|
+| Overall click rate (6-month avg) | [X%] | <5% |
+| HIPAA training completion (Allevio) | [X%] | 100% |
+| New hire training before PHI access | [X%] | 100% |
+| Annual refresher completion | [X%] | 100% |
+
+---
+
+## Matt Mathison Brief (if click rate >15% or completion <80%)
+
+[Company] security training: [X%] click rate (target <5%). [Key issue]. [Next sim date].
 ```
 
 ## Output Contract
-- Annual training always ends with a completion certificate and tracked completion — no training without evidence
-- Phishing simulation results always broken out by department — aggregate numbers hide the real risk
-- Employees who click phishing tests get immediate education (not punishment) — the goal is behavior change
-- HITL required: IT Manager runs the program; Dr. Lewis briefs the executive team personally on BEC and wire fraud risks; HR involved in repeated non-compliance cases
+- No PHI access before HIPAA training is complete at Allevio — this is a hard gate; a new employee who has not completed HIPAA security awareness training does not get access to AdvancedMD or any system with PHI; this is enforced via access provisioning (it-onboarding-provisioner); the training takes 30 minutes; it is completed before access is granted on Day 1
+- Phishing click rate measures culture, not individual failure — employees who click phishing simulations are busy people making fast decisions; repeated clickers get additional 1:1 coaching, not public shaming; the goal is a learning culture, not a gotcha program
+- Report rate is as important as click rate — an employee who clicks and then reports is more valuable than one who neither clicks nor reports; building a culture where employees feel safe reporting suspicious emails is as important as reducing click rates; unreported incidents are the expensive ones
+- HITL required: Dr. Lewis administers training platform; high-risk employee follow-up by Dr. Lewis; HIPAA training completion certificates reviewed by Dr. Lewis (Allevio); phishing simulation results reviewed by Dr. Lewis; training program changes require Dr. Lewis; training incident escalation (real phishing resulting in breach) triggers it-security-incident-responder
 
 ## System Dependencies
-- **Reads from:** Employee roster, role/department list, prior simulation results (provided)
-- **Writes to:** Completion records (training platform or IT records)
-- **HITL Required:** IT Manager reviews simulation results and owns the program; Dr. Lewis delivers or co-delivers executive security briefings; HR involved in repeated non-compliance cases
+- **Reads from:** Training platform (KnowBe4 / Microsoft Attack Simulator / Viva Learning), M365 user list, new hire roster (HR), HIPAA training records (Allevio)
+- **Writes to:** Training completion records (SharePoint/Ops/<Company>/IT/Security/Training/); HIPAA training certificates (Allevio — permanent records); phishing simulation reports; access provisioning gate (it-onboarding-provisioner)
+- **HITL Required:** Dr. Lewis administers program; HIPAA training gates PHI access; high-risk employee 1:1 by Dr. Lewis; real phishing incidents escalate to it-security-incident-responder
 
 ## Test Cases
-1. **Golden path:** Annual program → all-staff 30-min phishing awareness module (95% completion), Wave 1 phishing sim (12% click rate vs. 10% target — 2 departments need remedial training), financial fraud module for Finance team, executive briefing with Dr. Lewis; evidence package assembled for SOC 2
-2. **Edge case:** High-profile phishing campaign targeting the industry (e.g., healthcare BEC campaign) → immediate out-of-cycle alert to all staff with specific examples, 5-minute "what to watch for" module deployed, Finance team briefed personally within 24 hours
-3. **Adversarial:** Employee resents phishing simulation ("that's entrapment") → explains that simulations are the only way to know whether training is working, notes that the cost of a real phishing click is far higher, reassures that names of clickers are kept in IT (not shared broadly) — the goal is education not shame
+1. **Golden path:** Allevio Q2 phishing simulation + training review → Sim: "Urgent DocuSign signature needed" credential phishing; 18 employees targeted; Results: Click rate 11% (2 employees clicked); Credential entry: 1 employee entered credentials → immediate micro-training served; Reported: 4 employees correctly reported → 22% report rate; HIPAA training: 18/18 employees complete; 1 new hire completed HIPAA training on Day 1 — PHI access granted; Action: 1:1 session with 2 click employees; click rate trending down from 18% in Q1 to 11% in Q2
+2. **Edge case:** An employee is frustrated the phishing simulation "tricked them" → Validate: "You are right — this simulation was designed to look authentic, because real attackers do the same thing"; explain the tell-tale signs (the link domain was not docusign.com; the sender address was off by one character); frustrated employees who feel tricked become the most vigilant after 1:1 coaching
+3. **Adversarial:** "Our employees are smart — they know not to click phishing links — we do not need simulations" → Industry data: untrained employees click phishing at 17-33% rates; intelligence does not correlate with phishing resistance; executives are specifically targeted with spear phishing; at Allevio, HIPAA §164.308(a)(5) requires security awareness training — this is not optional
 
 ## Audit Log
-Training completion records retained by entity and year. Phishing simulation results retained per wave. Non-completion and remedial training cases documented.
+Training completion records retained by employee and year. HIPAA training certificates retained permanently (Allevio). Phishing simulation results retained by campaign date. High-risk employee follow-up retained. Real phishing incidents retained. Training program version history retained.
 
 ## Deprecation
-Retire when entity deploys a security awareness training platform (KnowBe4, Proofpoint Security Awareness, Cofense) with automated phishing simulations, training modules, and completion reporting.
+Retire when portfolio companies have dedicated security training administrators and the program runs autonomously — with Dr. Lewis reviewing quarterly completion and simulation reports rather than administering the program. HIPAA training documentation at Allevio is permanent.

@@ -1,180 +1,156 @@
 ---
 name: it-hiring-scorecard
-description: "Build and run a hiring scorecard for IT roles. Use when the user says 'IT hiring', 'hire an IT person', 'evaluate IT candidates', 'IT interview', 'IT staff hiring', 'IT technician hiring', 'IT manager hiring', or 'assess IT candidates'."
+description: "Score IT and technology role candidates against structured criteria. Use when the user says 'hire IT staff', 'IT hiring', 'evaluate IT candidate', 'IT interview scorecard', 'IT job interview', 'IT role candidate', 'hire a developer', 'hire sysadmin', 'IT technician hiring', 'hire IT manager', 'technology hire', 'evaluate tech candidate', or 'IT staff scorecard'."
 metadata:
   version: 1.0.0
   tier: it
   owner: Dr. John Lewis
-argument-hint: "<role-title> [--entity <name>] [--level <tech|manager|director>] [--format <scorecard|interview-guide>]"
+argument-hint: "[--role <title>] [--candidate <name>] [--level <junior|mid|senior|manager>] [--entity <company name>]"
 ---
 
 # IT Hiring Scorecard
 
-Build a structured hiring scorecard for IT roles. IT interviews that rely on gut feel produce inconsistent results and frequently hire for technical depth at the expense of operational reliability, communication skills, or security mindset. This scorecard evaluates what actually matters for IT roles at MBL's portfolio scale.
+Score IT and technology role candidates at MBL portfolio companies against a structured evaluation framework — ensuring that IT hires are assessed on technical skills, operational discipline, communication, and cultural alignment (THRIVE) rather than just resume credentials or interview impressiveness. At portfolio scale, a weak IT hire creates problems that compound for years; an excellent IT hire multiplies Dr. Lewis's capacity.
 
 ## When to Use
-- Hiring an IT Technician, IT Manager, or Director of IT
-- Building a repeatable IT hiring process for a growing entity
-- Evaluating an external IT consultant or MSP team
-- Comparing multiple IT candidates with a structured framework
+- Interviewing candidates for IT support, sysadmin, IT manager, or developer roles
+- Evaluating a managed service provider (MSP) technician who will become embedded support
+- Comparing multiple candidates for an IT role across portfolio companies
+- Post-interview debrief — structured scoring to avoid hiring based on gut feeling
 
-## Role Profiles
+## IT Hiring Framework
 
-| Role | Primary Skills | Key Differentiator | Red Flags |
-|------|-------------|------------------|---------|
-| **IT Technician (L1/L2)** | Endpoint support, M365 basics, ticketing | Customer service attitude; methodical troubleshooter | Condescending to users; poor follow-through |
-| **IT Engineer (L2/L3)** | Networking, server admin, cloud, scripting | Hands-on problem solver; security-aware | Over-engineers simple solutions; avoids documentation |
-| **IT Manager** | Team management, vendor management, project delivery, budget | Translates technical to business; proactive communicator | Manages up only; reactive to everything |
-| **Director of IT / CTO** | Strategy, architecture, executive communication, board-level reporting | Business acumen; builds IT as a business enabler | Builds empire vs. solves problems; ignores security |
+```
+Core competency dimensions for IT roles:
+  Technical depth (30%): Does the candidate actually know the systems and technologies involved?
+    → Scored through specific technical questions, not resume keywords
+    → Sysadmin/IT support: M365/Entra ID, Intune, networking, troubleshooting methodology
+    → Developer: Languages relevant to the role, architecture, testing discipline
+    → Healthcare IT: HIPAA technical safeguards, AdvancedMD or EHR experience (Allevio)
+    
+  Troubleshooting and problem-solving (25%): How do they think through an unfamiliar problem?
+    → Scored through scenario-based questions: "Walk me through how you would diagnose..."
+    → Do they ask clarifying questions first? Do they think systematically?
+    → Red flag: They jump to a solution without understanding the problem
+    
+  Operational discipline (20%): Do they document? Do they think about process?
+    → Scored through questions about how they've handled recurring issues, change management
+    → "How do you decide when to document something?"
+    → "Tell me about a time a process change you made reduced ticket volume"
+    
+  Communication and stakeholder management (15%): Can they explain technical issues to non-technical people?
+    → Scored through how they describe technical concepts in the interview
+    → At portfolio scale, IT communicates directly with business owners and employees
+    → Red flag: Condescending, jargon-heavy explanations for non-technical concepts
+    
+  THRIVE alignment (10%): Do they align with MBL's core values?
+    → Truth: Are they honest about what they don't know? Or do they fake knowledge?
+    → Hustle: Do they have examples of working hard to solve a difficult problem?
+    → Integrity: "Tell me about a time you had to deliver bad news to a stakeholder"
+    → Red flag: Exaggerated claims about past work; blaming others for failures
 
-## Scorecard Dimensions
-
-| Dimension | Weight | What to Assess |
-|---------|--------|--------------|
-| **Technical competency** | 30% | Depth appropriate to role; breadth matters more for small teams |
-| **Security mindset** | 20% | Does security come naturally or as an afterthought? |
-| **Communication** | 15% | Can explain technical concepts clearly to non-technical people? |
-| **Problem-solving approach** | 15% | Methodical? Documents? Learns from failures? |
-| **Reliability / follow-through** | 10% | Delivers what was committed? Flags blockers early? |
-| **Culture fit (THRIVE)** | 10% | Does their working style match Truth, Hustle, Respect, Integrity, Value, Enjoy? |
+Auto-disqualifiers (zero-tolerance):
+  Technical depth ≤12/30: Cannot perform the core IT function — immediate reject
+  THRIVE alignment ≤4/10: Cultural misfit — immediate reject regardless of technical score
+  Dishonesty during interview (caught in a false claim): Immediate reject
+  Refuses to discuss a documented failure or mistake: Strong reject signal
+```
 
 ## Output Format
 
 ```markdown
 # IT Hiring Scorecard — <Role Title>
-**Entity:** <MBL entity> | **Interview date:** <date>
-**Candidate:** <name> | **Interviewer(s):** <names>
+**Candidate:** [Name] | **Interview date:** [Date]
+**Interviewer:** Dr. John Lewis | **Entity:** [Company]
 
 ---
 
-## Technical Competency (30%)
+## Scorecard
 
-| Area | Score (1-5) | Notes |
-|------|-----------|-------|
-| Core technical skills for role (see role profile) | | |
-| Microsoft 365 / Entra ID administration | | |
-| Security fundamentals (MFA, endpoint, patching) | | |
-| Cloud basics (AWS/Azure/GCP) | | |
-| Documentation practices | | |
-| **Subtotal** | **/25** | |
+| Dimension | Weight | Score (1-5) | Weighted | Notes |
+|-----------|--------|-----------|---------|-------|
+| Technical depth | 30% | [1-5] | [X] | |
+| Troubleshooting / problem-solving | 25% | [1-5] | [X] | |
+| Operational discipline | 20% | [1-5] | [X] | |
+| Communication | 15% | [1-5] | [X] | |
+| THRIVE alignment | 10% | [1-5] | [X] | |
+| **Total weighted score** | 100% | — | **[X/5]** | |
 
-**Top technical strength:** <note>
-**Biggest technical gap:** <note>
-
----
-
-## Security Mindset (20%)
-
-**Interview questions:**
-1. "Tell me about a security incident you've handled or been aware of. What did you do?"
-2. "A user asks you to disable MFA on their account because it's inconvenient. How do you respond?"
-3. "How do you stay current on security threats?"
-
-| Question | Score (1-5) | Notes |
-|---------|-----------|-------|
-| Security incident response / awareness | | |
-| Resists security shortcuts under pressure | | |
-| Proactively identifies security risks | | |
-| **Subtotal** | **/15** | |
+**Threshold:** Technical depth must score ≥3/5 (weighted ≥0.9); THRIVE must score ≥2/5 (weighted ≥0.2)
 
 ---
 
-## Communication (15%)
+## Technical Questions and Responses
 
-**Assessed by:** How they explain technical concepts in the interview
-
-| Attribute | Score (1-5) | Notes |
-|---------|-----------|-------|
-| Explains concepts clearly to non-technical listeners | | |
-| Listens before answering | | |
-| Written communication (resume, cover letter quality) | | |
-| **Subtotal** | **/15** | |
-
----
-
-## Problem-Solving (15%)
-
-**Interview question:** "Walk me through how you would troubleshoot [specific scenario relevant to role]."
-
-| Attribute | Score (1-5) | Notes |
-|---------|-----------|-------|
-| Methodical — asks clarifying questions, doesn't jump to solutions | | |
-| Knows when to escalate vs. when to keep troubleshooting | | |
-| Documents and learns from problems | | |
-| **Subtotal** | **/15** | |
+| Question | Expected answer elements | Candidate response quality | Score |
+|---------|------------------------|--------------------------|-------|
+| "Walk me through how you'd diagnose a user who can't connect to VPN" | Asks clarifying questions first; checks local network; checks VPN client logs; checks server-side; escalates if needed | [Summary of response] | [1-5] |
+| "How do you decide what to document after resolving an issue?" | Documents when the fix is non-obvious, when the issue could recur, or when others would benefit | | |
+| "A user reports their laptop is running slow. Where do you start?" | CPU/memory/disk utilization; startup programs; malware scan; recent changes | | |
+| "What's a HIPAA Business Associate Agreement and why does it matter?" [Allevio roles] | Vendor agreement required for PHI handlers; legal requirement; specific controls | | |
+| [Role-specific technical question] | | | |
 
 ---
 
-## Reliability / Follow-Through (10%)
+## Behavioral Questions and Responses
 
-**Reference check questions:** "Did they deliver what they committed to? How did they handle it when they fell short?"
-
-| Attribute | Score (1-5) | Notes |
-|---------|-----------|-------|
-| Track record of commitments met | | |
-| Proactive communication when blocked | | |
-| **Subtotal** | **/10** | |
-
----
-
-## THRIVE Culture Fit (10%)
-
-| THRIVE Value | Score (1-5) | Notes |
-|-------------|-----------|-------|
-| Truth — honest, direct, no spin | | |
-| Hustle — bias toward action | | |
-| Respect — for users, teammates, vendors | | |
-| Integrity — follows through; admits mistakes | | |
-| Value — delivers results, not just activity | | |
-| **Subtotal** | **/25** | |
+| Question | What good looks like | Candidate response | Score |
+|---------|---------------------|------------------|-------|
+| "Tell me about the most difficult technical problem you've solved" | Structured explanation; clear diagnosis process; honest about what they tried | | |
+| "Describe a time you had to tell a stakeholder something they didn't want to hear" | Direct; provided a recommendation; owned the situation | | |
+| "Tell me about a time a process you owned failed. What happened?" | Takes ownership; explains root cause; describes what changed | | |
+| "How do you stay current with IT and security threats?" | Specific sources (CISA alerts, vendor security bulletins, etc.) | | |
 
 ---
 
-## Overall Score
+## Auto-Disqualifier Check
 
-| Dimension | Weight | Raw Score | Weighted Score |
-|---------|--------|---------|--------------|
-| Technical | 30% | /25 | |
-| Security mindset | 20% | /15 | |
-| Communication | 15% | /15 | |
-| Problem-solving | 15% | /15 | |
-| Reliability | 10% | /10 | |
-| THRIVE fit | 10% | /25 | |
-| **Total** | **100%** | | **/100** |
-
-**Hiring recommendation:** Strong Hire / Hire / Maybe / No Hire
-**Reasoning:** <2-3 sentences — the strongest reason for or against>
+- [ ] Technical depth ≥3/5 — if below: STOP, do not advance
+- [ ] THRIVE alignment ≥2/5 — if below: STOP, do not advance
+- [ ] No dishonesty detected during interview
+- [ ] Willing to discuss a documented failure
 
 ---
 
-## Red Flags Noted
+## Overall Assessment
 
-- [ ] Dismissive of security requirements
-- [ ] Blames users for IT problems
-- [ ] No documentation habits
-- [ ] Unclear on what they personally contributed vs. the team
-- [ ] Reference concerns
-- [ ] Compensation misalignment
+**Weighted score:** [X/5]
+**Auto-disqualifiers triggered:** Yes (STOP) / No (continue)
+**Recommendation:** Strong Yes / Yes / Lean Yes / Lean No / No / Hard No
+**Key strength:** [What stands out positively]
+**Key concern:** [What requires further evaluation or is a red flag]
+**References:** Required for Manager+ roles — [Status: Requested / Complete / Waived with reason]
+
+---
+
+## Comparison (if multiple candidates)
+
+| Candidate | Technical | Problem-solving | Operational | Communication | THRIVE | Total | Recommendation |
+|---------|----------|---------------|-----------|-----------|----|---|---|
+| [Name 1] | | | | | | | |
+| [Name 2] | | | | | | | |
+
+**Recommended hire:** [Name] — [Brief rationale]
 ```
 
 ## Output Contract
-- THRIVE filter always applied — THRIVE misalignment is a kill criterion regardless of technical score
-- Security mindset always scored separately — security as an afterthought is a disqualifier for any IT role
-- References always checked before a final offer — scorecard is not a substitute for reference verification
-- HITL required: Dr. Lewis approves IT Manager and above hiring decisions; IT Manager approves IT Tech and Engineer decisions
+- Scoring happens during or immediately after the interview, not from memory 2 days later — interview impressions decay quickly; the scorecard is completed within 2 hours of the interview; specific quotes and response summaries are recorded, not general impressions; "seemed knowledgeable" is not a score; "correctly diagnosed the VPN scenario by starting with client-side logs before server-side" is a score
+- Technical depth is tested with specific questions, not resume keywords — a candidate who lists "Azure" on their resume but cannot explain what Entra ID does or how Conditional Access works has "Azure" on their resume; specific technical questions with expected answer elements are used; the expected answer elements are defined before the interview, not after; this prevents scoring based on confidence rather than knowledge
+- References are required for Manager+ roles — a reference call with a former direct manager takes 20 minutes and provides signal that no interview can produce: "Would you work for this person again? What was their biggest weakness as a manager? How did they handle conflict within the team?"; reference calls at Manager+ level are not optional; Dr. Lewis conducts them personally
+- HITL required: Dr. Lewis interviews all IT Manager+ candidates; portfolio company CEOs interview final IT hires (Manager+ level); reference calls by Dr. Lewis; hiring decision by Dr. Lewis + CEO for Manager+; Matt Mathison for IT Director or VP-level IT hires
 
 ## System Dependencies
-- **Reads from:** Job description, candidate resume, interview notes (provided)
-- **Writes to:** Nothing (scorecard for HITL hiring decision)
-- **HITL Required:** Dr. Lewis approves IT Manager hires; Matt Mathison informed of Director-level IT hires; IT Manager reviews Tech and Engineer scorecards
+- **Reads from:** Job description, role requirements, portfolio company IT needs, prior interview feedback (if second round)
+- **Writes to:** Hiring scorecard (SharePoint/Ops/<Company>/HR/Hiring/<Role>/Scorecards/); candidate comparison; hiring recommendation
+- **HITL Required:** Dr. Lewis interviews IT hires; CEO interviews Manager+ candidates; references by Dr. Lewis; hiring decision by Dr. Lewis + CEO (Manager+); Matt Mathison for Director+ IT hires
 
 ## Test Cases
-1. **Golden path:** IT Manager candidate → technical score 22/25 (strong), security mindset 12/15 (good), communication 13/15 (strong), problem-solving 12/15 (good), reliability 8/10 (references pending), THRIVE 20/25 (Hustle and Enjoy lower) — weighted 84/100, "Hire" recommendation pending references
-2. **Edge case:** IT Technician candidate with excellent technical skills but scored 2/5 on "Respect" dimension (dismissive in interview toward a non-technical question) → "No Hire" recommendation despite technical strength; IT serves users — attitude toward users is non-negotiable
-3. **Adversarial:** Hiring manager wants to skip the scorecard for an "obviously great" candidate (personal referral) → uses scorecard anyway; documents scores; referrals don't remove the need for structured evaluation — they just provide a warm lead
+1. **Golden path:** Evaluating 3 IT support technician candidates for Allevio → Technical questions: VPN diagnosis, M365 user provisioning, endpoint encryption; Behavioral: difficult stakeholder situation, process improvement example; Candidate A: Technical 4/5 (correctly diagnosed VPN in 3 steps; explained BitLocker accurately), Troubleshooting 4/5, Operational 3/5 (documents issues, inconsistent format), Communication 4/5, THRIVE 4/5 — Total: 3.85/5 ✅; Candidate B: Technical 2/5 (could not explain Entra ID vs. local accounts) — AUTO-DISQUALIFY; Candidate C: Technical 3/5, THRIVE 2/5 (blamed previous employer repeatedly for failures) — borderline; Recommendation: Candidate A — strong technical fit, healthcare IT experience, passes all thresholds; reference calls initiated
+2. **Edge case:** Top candidate has excellent technical skills but low THRIVE score (1.5/5) due to multiple "blame others" answers → Auto-disqualified: THRIVE ≤4/10 weighted = 0.15 < 0.2 threshold; technical excellence cannot override cultural misalignment; at MBL portfolio scale, an IT person who deflects accountability and blames others will conflict with the THRIVE operating model and damage the culture at a small company more severely than at a large enterprise; document the rationale clearly; do not advance; continue the search
+3. **Adversarial:** "The candidate's resume is amazing and the CEO really liked them in the intro call — do we really need to do this structured evaluation?" → The structured evaluation is what separates a good interviewer from a biased one; an impressive resume and a good first impression are the two most common predictors of hiring mistakes; the scorecard is what catches: the sysadmin who says "Azure" but cannot explain Entra ID; the manager who talks about teamwork but cannot describe a single example of advocating for their team; the pattern of impressive candidates who fail on THRIVE alignment is consistent — run the scorecard
 
 ## Audit Log
-Hiring scorecards retained by role and date. Hiring decisions and outcomes tracked.
+Hiring scorecards retained per candidate. Interview notes retained. Reference call notes retained (Manager+ roles). Hiring decisions documented with rationale. Rejected candidates documented with reason. Comparison matrices retained for multi-candidate evaluations.
 
 ## Deprecation
-Retire when entity deploys an ATS (Applicant Tracking System) with structured interview scorecards, assessment tools, and collaborative hiring workflows.
+Retire when portfolio companies have dedicated HR/recruiting functions with IT-specific hiring frameworks — with Dr. Lewis reviewing technical scoring criteria and interviewing Manager+ IT candidates. THRIVE alignment assessment in all IT hires is a permanent requirement regardless of who leads recruiting.
