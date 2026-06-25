@@ -69,7 +69,41 @@ if [ "$BROKEN" -gt 0 ]; then
   warn "  Removed $BROKEN broken symlinks"
 fi
 
-# ─── 4. Memory symlink from iCloud ───────────────────────────────────────────
+# ─── 4. Claude config symlinks from iCloud ───────────────────────────────────
+log "Claude config (iCloud)..."
+
+ICLOUD_SYNC="$ICLOUD/claude-sync"
+
+link_from_icloud() {
+  local src="$1" dst="$2"
+  if [ ! -f "$src" ]; then
+    warn "  Not found in iCloud yet: $src — re-run after iCloud syncs."
+    return
+  fi
+  if [ -L "$dst" ]; then
+    : # already linked
+  elif [ -f "$dst" ]; then
+    mv "$dst" "${dst}.bak.$(date +%Y%m%d%H%M%S)"
+    ln -s "$src" "$dst"
+    log "  Linked $(basename "$dst") from iCloud (backed up original)"
+  else
+    ln -s "$src" "$dst"
+    log "  Linked $(basename "$dst") from iCloud"
+  fi
+}
+
+link_from_icloud "$ICLOUD_SYNC/CLAUDE.md"      "$HOME/.claude/CLAUDE.md"
+link_from_icloud "$ICLOUD_SYNC/settings.json"  "$HOME/.claude/settings.json"
+
+# ─── 5. Plugin install ────────────────────────────────────────────────────────
+log "Plugins..."
+if command -v claude &>/dev/null; then
+  claude plugin install claude-mem@thedotmack --yes 2>/dev/null && log "  claude-mem installed" || log "  claude-mem already installed"
+else
+  warn "  claude CLI not found — install Claude Code first, then re-run this script"
+fi
+
+# ─── 6. Memory symlink from iCloud ───────────────────────────────────────────
 log "Memory sync (iCloud)..."
 
 if [ ! -d "$MEMORY_SOURCE" ]; then
@@ -93,15 +127,17 @@ else
   fi
 fi
 
-# ─── 5. Verify counts ────────────────────────────────────────────────────────
+# ─── 7. Verify counts ────────────────────────────────────────────────────────
 SKILL_COUNT=$(ls "$AGENTS_SKILLS" | wc -l | tr -d ' ')
 LINK_COUNT=$(ls "$CLAUDE_SKILLS" | wc -l | tr -d ' ')
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 log "Done."
-echo "  ~/.agents/skills/   →  $SKILL_COUNT skills"
-echo "  ~/.claude/skills/   →  $LINK_COUNT symlinks"
-echo "  Memory              →  $MEMORY_LINK"
+echo "  ~/.agents/skills/     →  $SKILL_COUNT skills"
+echo "  ~/.claude/skills/     →  $LINK_COUNT symlinks"
+echo "  CLAUDE.md             →  iCloud"
+echo "  settings.json         →  iCloud"
+echo "  Memory                →  $MEMORY_LINK"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
